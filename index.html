@@ -140,40 +140,6 @@
         });
     })();
     </script>
-    <script>
-        document.getElementById('joinForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 获取表单数据
-            const formData = {
-                gameId: document.getElementById('gameId').value,
-                reason: document.getElementById('reason').value,
-                qq: document.getElementById('qq').value
-            };
-
-            // 模拟邮件发送（实际需要后端支持）
-            console.log('表单数据：', formData); // 开发阶段查看数据
-            
-            // 显示成功状态
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.textContent = '申请已提交！我们会通过QQ联系您';
-            statusMessage.className = 'status-message success';
-            
-            // 清空表单
-            this.reset();
-            
-            // 实际邮件发送需要配置EmailJS（需自行注册）
-            
-            emailjs.send("qtgzs","template_lomdlok",{
-                title: "有人想加入永恒混沌",
-                name: formData.gameId,
-                time: "我想加入永恒混沌组织",
-                message: "理由:"+formData.reason+"\nQQ:"+formData.qq,
-                email: "qtgzsceo@qq.com",
-            }).then(() => {
-                statusMessage.textContent = '申请已提交！我们会通过QQ联系您';
-            });
-        });
-    </script>
+    https://github.com/QTGZS/qtgzs.github.io/edit/main/index.html
 </body>
 </html>
