@@ -1,1 +1,179 @@
-<h1>你好世界</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>永恒混沌 | 2b2t.ink</title>
+    <style>
+        :root {
+            --primary-color: #87CEEB; /* 淡蓝色主题 */
+            --secondary-color: #1E90FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f0f8ff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>永恒混沌组织</h1>
+        <p>2b2t.ink 组织 | 混沌永存，秩序不灭</p>
+        <p>现在加入送战斗Kit和附魔金苹果，组织物资随便拿!!!</p>
+    </header>
+
+    <div class="container">
+        <h2 style="color: var(--secondary-color); margin-bottom: 2rem;">加入我们</h2>
+        
+        <form id="joinForm">
+            <div class="form-group">
+                <label>游戏ID</label>
+                <input type="text" id="gameId" required 
+                       placeholder="请输入您的Minecraft游戏ID">
+            </div>
+
+            <div class="form-group">
+                <label>加入理由</label>
+                <textarea id="reason" required
+                          placeholder="请说明您希望加入的原因（200字以内）"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>QQ号码</label>
+                <input type="number" id="qq" required
+                       placeholder="请输入您的QQ号码">
+            </div>
+
+            <button type="submit" class="submit-btn">提交申请</button>
+        </form>
+
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "fn9Iz4bsD63_QHJzn",
+        });
+    })();
+    </script>
+    <script>
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 获取表单数据
+            const formData = {
+                gameId: document.getElementById('gameId').value,
+                reason: document.getElementById('reason').value,
+                qq: document.getElementById('qq').value
+            };
+
+            // 模拟邮件发送（实际需要后端支持）
+            console.log('表单数据：', formData); // 开发阶段查看数据
+            
+            // 显示成功状态
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = '申请已提交！我们会通过QQ联系您';
+            statusMessage.className = 'status-message success';
+            
+            // 清空表单
+            this.reset();
+            
+            // 实际邮件发送需要配置EmailJS（需自行注册）
+            
+            emailjs.send("qtgzs","template_lomdlok",{
+                title: "有人想加入永恒混沌",
+                name: formData.gameId,
+                time: "我想加入永恒混沌组织",
+                message: "理由:"+formData.reason+"\nQQ:"+formData.qq,
+                email: "qtgzsceo@qq.com",
+            }).then(() => {
+                statusMessage.textContent = '申请已提交！我们会通过QQ联系您';
+            });
+        });
+    </script>
+</body>
+</html>
